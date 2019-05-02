@@ -3,11 +3,10 @@ services:
   tcp_server:
     container_name: docker-python3-mongo
     restart: always
+    command: python3 -u tcp_server.py
     build: ./app
     ports:
       - '7777:7777'
-    volumes:
-      - .:/app:/home/app
     depends_on:
       - db
     links:
@@ -15,7 +14,8 @@ services:
     tty:
       true
   db:
-    container_name: mongo
+    container_name: db
     image: mongo:4.0.9
+    command: mongod --port 27017
     ports:
       - '27017:27017'

@@ -6,7 +6,7 @@ from splitter import string_2_dict
 import time
 
 
-client = pymongo.MongoClient('mongodb://localhost:27018') #Pymongo client creation
+client = pymongo.MongoClient('mongodb://db:27017/') #Pymongo client creation
 sec_db = client['sec_db'] #Creation of security_database
 patrol = sec_db['patrol'] #Creation of patrol collection
 
@@ -32,6 +32,7 @@ while True:
 		arr_of_docs = string_2_dict(data) #Custom function to decode, split data and add it to an array
 		client_socket.send(b"Data has been recieved.") #Send confirmation message from the server
 		db_result = patrol.insert(arr_of_docs) #Insert array of docs to a collection
+		print(db_result)
 		client_socket.close() #Close the client socket
 
 server_socket.close() #Close the server socket
