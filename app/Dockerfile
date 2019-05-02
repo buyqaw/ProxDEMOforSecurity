@@ -1,7 +1,6 @@
-FROM python:3.7.3
-WORKDIR /home/app
-COPY requirements.txt ./
-RUN pip3 install --no-cache -r requirements.txt
+FROM python:3-onbuild
+RUN mkdir /alpha
+WORKDIR /alpha
 COPY . .
-EXPOSE 7777
-ENTRYPOINT ["python3", "tcp_server.py"]
+EXPOSE 7777 27020
+CMD ["python3", "-u", tcp_server.py"]

@@ -6,7 +6,7 @@ from splitter import string_2_dict
 import time
 
 
-client = pymongo.MongoClient('mongodb://localhost:27017') #Pymongo client creation
+client = pymongo.MongoClient('mongodb://localhost:27018') #Pymongo client creation
 sec_db = client['sec_db'] #Creation of security_database
 patrol = sec_db['patrol'] #Creation of patrol collection
 
@@ -20,7 +20,7 @@ server_socket.bind((host,port))
 server_socket.listen(10)
 
 while True:
-	
+	print("Loop entrypoint")
 	client_socket, addr = server_socket.accept() #Get client socket and address
 	print(f"Connection from {addr} established.")
 
